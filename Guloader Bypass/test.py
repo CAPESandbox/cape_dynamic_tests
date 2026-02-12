@@ -22,19 +22,18 @@ class CapeDynamicTest(CapeDynamicTestBase):
         
         # check if there are any behavioural listings at all in the report
         o_has_behaviour_trace = CapeTestObjective(test=self, requirement="API calls are being hooked", objective_name="BehaviourInfoGenerated")
-        o_has_behaviour_trace.set_success_msg("API hooking is working")
-        o_has_behaviour_trace.set_failure_msg("The sample failed to execute, the monitor failed to initialise or API hooking is not working")
+        o_has_behaviour_trace.set_success_msg("Behavioral output from API hooks detected")
+        o_has_behaviour_trace.set_failure_msg("There may be a detonation problem, expected behavior log not found")
         o_has_behaviour_trace.set_result_verifier(VerifyReportSectionHasContent("behavior"))
         self.add_objective(o_has_behaviour_trace)
 
         # check if it caught the network comms
-        o_comms = CapeTestObjective(test=self, requirement="A sleep call is hooked, including its parameter", objective_name="DetectComms", is_informational=False)
-        o_comms.set_success_msg("CAPE hooked a sleep and retrieved the correct argument")
-        o_comms.set_failure_msg("There may be a hooking problem/change or the sample failed to run properly")
+        o_comms = CapeTestObjective(test=self, requirement="("There may be a detonation problem, expected behavior log not found")
+        o_comms.set_success_msg("Malware comms detected")
+        o_comms.set_failure_msg("There may be a detonation problem, expected network comms not detected")
         evaluator = VerifyReportSectionHasMatching(path="behavior/processes/calls", match_criteria={"api": "GetAddrInfoExW", "arguments/value": "bara-seck.com"})
         o_comms.set_result_verifier(evaluator)
         o_has_behaviour_trace.add_child_objective(o_comms)
-
 
         # check breakpoint(s) hit
         o_breakpoint = CapeTestObjective(test=self, requirement="Breakpoint(s) hit", objective_name="DetectBreakpointHits", is_informational=False)
