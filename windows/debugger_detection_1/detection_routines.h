@@ -16,5 +16,4 @@ bool Check_NtQueryIP_ProcessDebugPort();
 bool Check_NtQueryIP_ProcessDebugFlags();
 bool Check_NtQueryIP_ProcessDebugObjHandle();
 bool Check_HeapFlagPreWin10();
-bool Check_HeapFlag();
 bool Check_KuserKernDebug();
